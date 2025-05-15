@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Fashion Euphoria - Stylish clothing and accessories">
+  <meta name="keywords" content="fashion, clothing, style, accessories">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <title>Fashion Euphoria - Stylish Clothing & Accessories</title>
+
+  <style>
+    /* Custom CSS */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+    
+    :root {
+      --primary-color: #9370DB; /* Light violet */
+      --secondary-color: #87CEFA; /* Light blue */
+      --accent-color: #98FB98; /* Light green */
+      --dark-accent: #4B0082; /* Dark violet */
+      --light-color: #F8F9FA;
+      --text-color: #333333;
+    }
+    
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.7;
+      color: var(--text-color);
+      background-color: var(--light-color);
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      transition: 0.3s all ease;
+      color: var(--text-color);
+    }
+    
+    a:hover {
+      color: var(--primary-color);
+    }
+    
+    /* Navigation */
+    .custom-navbar {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color)) !important;
+      padding: 15px 0;
+    }
+    
+    .custom-navbar .navbar-brand {
+      font-size: 28px;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .custom-navbar .navbar-brand span {
+      color: var(--accent-color);
+    }
+    
+    .custom-navbar .custom-navbar-nav li a {
+      font-weight: 500;
+      color: white !important;
+      opacity: 0.8;
+      transition: 0.3s all ease;
+      position: relative;
+    }
+    
+    .custom-navbar .custom-navbar-nav li a:hover {
+      opacity: 1;
+    }
+    
+    .custom-navbar .custom-navbar-nav li a:hover:before {
+      width: calc(100% - 16px);
+    }
+    
+    .custom-navbar .custom-navbar-nav li.active a {
+      opacity: 1;
+    }
+    
+    .custom-navbar .custom-navbar-nav li a:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 8px;
+      right: 8px;
+      background: var(--accent-color);
+      height: 3px;
+      opacity: 1;
+      visibility: visible;
+      width: 0;
+      transition: 0.15s all ease-out;
+    }
+    
+    .custom-navbar .custom-navbar-cta li {
+      margin-left: 0px;
+      margin-right: 5px;
+    }
+    
+    .custom-navbar .custom-navbar-cta li a {
+      color: white !important;
+      opacity: 0.8;
+    }
+    
+    .custom-navbar .custom-navbar-cta li a:hover {
+      opacity: 1;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      padding: 7rem 0 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero h1 {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 30px;
+      font-size: 48px;
+    }
+    
+    .hero p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 30px;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    
+    .hero-img-wrap {
+      position: relative;
+      height: 500px;
+    }
+    
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .hero-slide.active {
+      opacity: 1;
+    }
+    
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .hero-slide-nav {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      z-index: 10;
+    }
+    
+    .slide-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .slide-dot.active {
+      background: white;
+    }
+    
+    /* Buttons */
+    .btn {
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 30px;
+      transition: 0.3s all ease;
+    }
+    
+    .btn-primary {
+      background: var(--dark-accent);
+      border-color: var(--dark-accent);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-secondary {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--text-color);
+    }
+    
+    .btn-secondary:hover {
+      background: #7CFC00;
+      border-color: #7CFC00;
+    }
+    
+    .btn-white-outline {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    
+    .btn-white-outline:hover {
+      border-color: white;
+    }
+    
+    /* Product Section */
+    .product-section {
+      padding: 7rem 0;
+    }
+    
+    .section-title {
+      color: var(--dark-accent);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    
+    .product-item {
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      padding-bottom: 50px;
+      cursor: pointer;
+      transition: 0.3s all ease;
+    }
+    
+    .product-item .product-thumbnail {
+      margin-bottom: 30px;
+      position: relative;
+      top: 0;
+      transition: 0.3s all ease;
+    }
+    
+    .product-item h3 {
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+    
+    .product-item strong {
+      font-weight: 700 !important;
+      font-size: 18px !important;
+      color: var(--dark-accent);
+    }
+    
+    .product-item .icon-cross {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      display: inline-block;
+      background: var(--dark-accent);
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: -17.5px;
+      border-radius: 50%;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s all ease;
+      color: white;
+      font-size: 16px;
+      line-height: 35px;
+    }
+    
+    .product-item:before {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      content: "";
+      background: #F1E6FF; /* Light violet shade for background */
+      height: 0%;
+      z-index: -1;
+      border-radius: 10px;
+      transition: 0.3s all ease;
+    }
+    
+    .product-item:hover .product-thumbnail {
+      top: -25px;
+    }
+    
+    .product-item:hover .icon-cross {
+      bottom: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .product-item:hover:before {
+      height: 70%;
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 7rem 0;
+      background-color: #f8f9fa;
+    }
+    
+    .feature {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .feature .icon {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 20px;
+      width: 70px;
+      height: 70px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      color: white;
+      line-height: 70px;
+      font-size: 24px;
+    }
+    
+    .feature .icon:before {
+      content: "";
+      width: 33px;
+      height: 33px;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      right: -8px;
+      bottom: 0;
+    }
+    
+    .feature h3 {
+      font-size: 18px;
+      color: var(--dark-accent);
+      margin-bottom: 15px;
+    }
+    
+    .feature p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #6a6a6a;
+    }
+    
+    /* Newsletter Section */
+    .newsletter-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+    
+    .newsletter-section h2 {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .newsletter-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+    }
+    
+    .newsletter-form .form-control {
+      height: 50px;
+      border-radius: 10px 0 0 10px;
+      border: none;
+    }
+    
+    .newsletter-form .btn {
+      border-radius: 0 10px 10px 0;
+      height: 50px;
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 50px;
+    }
+    
+    /* Footer */
+    .footer-section {
+      padding: 5rem 0 2rem 0;
+      background: #f8f9fa;
+    }
+    
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark-accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: #6a6a6a;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-section .social-icons a {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+    }
+    
+    .footer-section .social-icons a:hover {
+      background: var(--dark-accent);
+    }
+    
+    .copyright {
+      padding-top: 2rem;
+      font-size: 14px;
+      color: #6a6a6a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Start Header/Navigation -->
+  <nav class="custom-navbar navbar navbar-expand-md navbar-dark" arial-label="Fashion Euphoria navigation bar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Fashion<span>Euphoria</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFashion" aria-controls="navbarsFashion" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsFashion">
+        <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li><a class="nav-link" href="shop.html">Shop</a></li>
+          <li><a class="nav-link" href="collections.html">Collections</a></li>
+          <li><a class="nav-link" href="new-arrivals.html">New Arrivals</a></li>
+          <li><a class="nav-link" href="about.html">About</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+          <li><a class="nav-link" href="search.html"><i class="fas fa-search"></i></a></li>
+          <li><a class="nav-link" href="account.html"><i class="fas fa-user"></i></a></li>
+          <li><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Header/Navigation -->
+
+  <!-- Start Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-5">
+          <div class="intro-excerpt">
+            <h1>Discover Your Style <span class="d-block">Evolution</span></h1>
+            <p class="mb-4">Elevate your wardrobe with our curated collection of trendy and timeless fashion pieces that express your unique style and personality.</p>
+            <p><a href="shop.html" class="btn btn-secondary me-2">Shop Now</a><a href="collections.html" class="btn btn-white-outline">Explore</a></p>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="hero-img-wrap">
+            <div class="hero-slide active">
+              <img src="./assets/1.png" alt="Fashion model wearing summer collection">
+            </div>
+            <div class="hero-slide">
+              <img src="./assets/2.png" alt="Fashion model wearing formal wear">
+            </div>
+            <div class="hero-slide">
+              <img src="./assets/3.png" alt="Fashion model with accessories">
+            </div>
+            <div class="hero-slide">
+              <img src="./assets/4.png" alt="Fashion model with new arrivals">
+            </div>
+            <div class="hero-slide-nav">
+              <div class="slide-dot active" data-slide="0"></div>
+              <div class="slide-dot" data-slide="1"></div>
+              <div class="slide-dot" data-slide="2"></div>
+              <div class="slide-dot" data-slide="3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Hero Section -->
+
+  <!-- Start Product Section -->
+  <div class="product-section">
+    <div class="container">
+      <div class="row">
+
+        <!-- Start Column 1 -->
+        <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+          <h2 class="mb-4 section-title">Season's Best Sellers</h2>
+          <p class="mb-4">Discover our most popular styles that everyone is loving this season. Premium quality materials meeting contemporary designs for the fashion-forward individual.</p>
+          <p><a href="shop.html" class="btn btn-primary">View All</a></p>
+        </div> 
+        <!-- End Column 1 -->
+
+        <!-- Start Column 2 -->
+        <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+          <a class="product-item" href="product-details.html">
+            <img src="/api/placeholder/300/300" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Summer Breeze Dress</h3>
+            <strong class="product-price">$89.99</strong>
+
+            <span class="icon-cross">
+              <i class="fas fa-plus"></i>
+            </span>
+          </a>
+        </div> 
+        <!-- End Column 2 -->
+
+        <!-- Start Column 3 -->
+        <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+          <a class="product-item" href="product-details.html">
+            <img src="/api/placeholder/300/300" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Urban Chic Jacket</h3>
+            <strong class="product-price">$129.00</strong>
+
+            <span class="icon-cross">
+              <i class="fas fa-plus"></i>
+            </span>
+          </a>
+        </div>
+        <!-- End Column 3 -->
+
+        <!-- Start Column 4 -->
+        <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+          <a class="product-item" href="product-details.html">
+            <img src="/api/placeholder/300/300" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Modern Elegance Blouse</h3>
+            <strong class="product-price">$64.50</strong>
+
+            <span class="icon-cross">
+              <i class="fas fa-plus"></i>
+            </span>
+          </a>
+        </div>
+        <!-- End Column 4 -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Product Section -->
+
+  <!-- Start Features Section -->
+  <div class="features-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-5">
+          <h2 class="section-title">Why Shop With Us</h2>
+          <p>At Fashion Euphoria, we're committed to providing you with a seamless shopping experience and quality fashion that stands the test of time.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 col-md-3">
+          <div class="feature">
+            <div class="icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <h3>Fast Shipping</h3>
+            <p>Get your items delivered to your doorstep quickly with our reliable shipping partners.</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="feature">
+            <div class="icon">
+              <i class="fas fa-undo"></i>
+            </div>
+            <h3>Easy Returns</h3>
+            <p>Not satisfied? Return your items within 30 days for a full refund or exchange.</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="feature">
+            <div class="icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Secure Payment</h3>
+            <p>Shop with confidence knowing your transaction is protected with our secure payment system.</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="feature">
+            <div class="icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>24/7 Support</h3>
+            <p>Our customer service team is always ready to assist you with any questions or concerns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Features Section -->
+
+  <!-- Start Collections Section -->
+  <div class="product-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Our Collections</h2>
+          <p>Browse through our carefully curated collections designed for every occasion and style.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a href="collection-casual.html" class="product-item">
+            <img src="/api/placeholder/350/200" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Casual Collection</h3>
+            <p>Everyday comfort meets style</p>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a href="collection-formal.html" class="product-item">
+            <img src="/api/placeholder/350/200" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Formal Collection</h3>
+            <p>Sophisticated elegance for special occasions</p>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a href="collection-accessories.html" class="product-item">
+            <img src="/api/placeholder/350/200" class="img-fluid product-thumbnail">
+            <h3 class="product-title">Accessories</h3>
+            <p>The perfect finishing touches</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Collections Section -->
+
+  <!-- Start Newsletter Section -->
+  <div class="newsletter-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 text-center">
+          <h2>Join Our Newsletter</h2>
+          <p>Subscribe to our newsletter and be the first to know about new collections, exclusive offers, and fashion tips.</p>
+
+          <form class="newsletter-form d-flex">
+            <input type="email" class="form-control" placeholder="Enter your email">
+            <button type="submit" class="btn btn-secondary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Newsletter Section -->
+
+  <!-- Start Footer Section -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-5">
+          <h3>Fashion Euphoria</h3>
+          <p>Your destination for stylish and trendy fashion that makes you feel confident and beautiful.</p>
+          <div class="social-icons mt-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-2 mb-5">
+          <h3>Shop</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-2 mb-5">
+          <h3>Information</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-2 mb-5">
+          <h3>Account</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Order History</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-5">
+          <h3>Contact Us</h3>
+          <ul class="list-unstyled">
+            <li>123 Fashion Street</li>
+            <li>Style City, SC 12345</li>
+            <li>Phone: (123) 456-7890</li>
+            <li>Email: info@fashioneuphoria.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="copyright border-top pt-4">
+            <p>&copy; 2025 Fashion Euphoria. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer Section -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Hero Slider
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.slide-dot');
+      let currentSlide = 0;
+      const slideInterval = 5000; // 5 seconds
+      let slideTimer;
+      
+      function showSlide(n) {
+        // Reset all slides and dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Show new slide and activate corresponding dot
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+      
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+      
+      // Start the slideshow
+      function startSlideShow() {
+        slideTimer = setInterval(nextSlide, slideInterval);
+      }
+      
+      // Pause the slideshow when hovering over the slider
+      const heroWrap = document.querySelector('.hero-img-wrap');
+      heroWrap.addEventListener('mouseenter', () => {
+        clearInterval(slideTimer);
+      });
+      
+      heroWrap.addEventListener('mouseleave', startSlideShow);
+      
+      // Add click event to dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          clearInterval(slideTimer);
+          showSlide(index);
+          startSlideShow();
+        });
+      });
+      
+      // Initialize the slider
+      showSlide(0);
+      startSlideShow();
+    });
+  </script>
+</body>
+</html>
